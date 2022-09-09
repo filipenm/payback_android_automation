@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logsPath">./logs</Property>
+        <Property name="logsFileName">test_log</Property>
+        <Property name="consolePattern">%d{[dd-MM-yyyy HH:mm:ss]} [%t] [%highlight{%-5level}]
+            %c:%msg%n%throwable{short.lineNumber}
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consolePattern}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <logger name="org.apache.http" level="WARN"/>
+        <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
