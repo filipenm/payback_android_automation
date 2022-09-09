@@ -33,5 +33,4 @@ public class WaitHelper extends BaseHelper {
             app.log().debug(false);
         }
     }
-
 }
