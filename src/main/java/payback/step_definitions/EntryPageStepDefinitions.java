@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import payback.core.ApplicationManager;
 
 public class EntryPageStepDefinitions {
-    public static final String PAGE_NAME = "Entry page";
 
     protected ApplicationManager app = ApplicationManager.get();
 

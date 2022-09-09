@@ -69,6 +69,12 @@ public class AppiumDriverHelper extends BaseHelper {
         return this;
     }
 
+    public AppiumDriverHelper type(By elementLocator, String text) {
+        app.log().debug(elementLocator, text);
+        getDriver().findElement(elementLocator).sendKeys(text);
+        return this;
+    }
+
     public AppiumDriverHelper type(MobileElement element, double text) {
         return type(element, String.valueOf(text));
     }
