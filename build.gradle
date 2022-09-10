@@ -1,49 +1,37 @@
-plugins {
-    id 'groovy'
-    id 'java'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.qameta.allure.gradle.allure:allure-plugin:2.10.0"
+        classpath "io.qameta.allure.gradle.adapter:allure-adapter-plugin:2.10.0"
+    }
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.10.0"
+    id "io.qameta.allure-adapter" version "2.10.0"
+}
 
 repositories {
     mavenCentral()
 }
 
-project.ext {
-    cucumberVersion = '5.6.0'
-}
+group 'com.payback'
+version '1.0-SNAPSHOT'
 
 dependencies {
     implementation 'io.cucumber:cucumber-java:7.6.0'
-    testImplementation 'io.cucumber:cucumber-java:' + cucumberVersion
-
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+    implementation 'io.cucumber:cucumber-junit:7.6.0'
     implementation 'org.codehaus.groovy:groovy-all:3.0.12'
     implementation 'org.apache.logging.log4j:log4j-api:2.18.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
     implementation group: 'io.appium', name: 'java-client', version: '7.3.0'
-    implementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.0-BETA21'
     implementation 'ch.qos.logback:logback-classic:1.4.0'
-
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom testImplementation
-    }
-}
-
-task cucumber() {
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'html:reports/test-report',
-                    '--plugin', 'pretty',
-                    '--glue', 'payback.step_definitions',
-                    'src/test/resources']
-        }
-    }
-}
+apply plugin: "io.qameta.allure"
+apply plugin: "io.qameta.allure-adapter"

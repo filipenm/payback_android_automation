@@ -78,8 +78,7 @@ public class AppiumDriverHelper extends BaseHelper {
 
     public MobileElement findElement(By elementLocator) {
         app.log().debug(elementLocator);
-        MobileElement element = null;
-        element = getDriver().findElement(elementLocator);
+        MobileElement element = getDriver().findElement(elementLocator);
         return element;
     }
 
