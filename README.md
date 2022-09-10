@@ -18,6 +18,7 @@ app.path=/Users/user/Documents/payback_app/payback.apk
 app.path.previousVersion=/Users/user/Documents/payback_app/payback_old.apk
 ```
 
+Do not forget to download and store an application in a proper folder =)
 
 Next framework updates:
 1) Add allure reporting/report-portal;
