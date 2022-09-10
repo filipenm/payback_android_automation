@@ -8,13 +8,12 @@ import payback.core.ApplicationManager;
 
 public class CouponsPageStepDefinitions {
 
-    protected ApplicationManager app = ApplicationManager.get();
-
     private static final By filterButton = By.id("filter_button");
     private static final By partnerButton = By.id("image");
     private static final By activateButton = By.id("not_activated_button");
     private static final By activatedCoupon = By.id("activated_icon");
     private static final By redeemOffline = By.id("redeem_offline_button");
+    protected ApplicationManager app = ApplicationManager.get();
 
     @And("I filter by partner and activate a coupon")
     public void i_filter_by_partner_and_activate_coupon() {

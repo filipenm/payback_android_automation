@@ -7,12 +7,11 @@ import payback.core.ApplicationManager;
 
 public class LoginPageStepDefinitions {
 
-    protected ApplicationManager app = ApplicationManager.get();
-
     private final By numberField = By.id("txtLoginCheckCardNumber");
     private final By proceed = By.id("progressbutton_btn");
     private final By passwordField = By.id("login_password_field");
     private final By finishLogin = By.id("progressbutton_btn");
+    protected ApplicationManager app = ApplicationManager.get();
 
     @When("I log in with account number {string} and password {string}")
     public void i_log_in_with_account_number_and_password(String accountNumber, String password) {

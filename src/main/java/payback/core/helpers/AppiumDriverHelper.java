@@ -12,10 +12,6 @@ import payback.core.config.Configuration;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class AppiumDriverHelper extends BaseHelper {
     private static AppiumDriver<MobileElement> appiumDriver;
@@ -63,24 +59,10 @@ public class AppiumDriverHelper extends BaseHelper {
         return androidDriver;
     }
 
-    public AppiumDriverHelper type(MobileElement element, String text) {
-        app.log().debug(element, text);
-        element.sendKeys(text);
-        return this;
-    }
-
     public AppiumDriverHelper type(By elementLocator, String text) {
         app.log().debug(elementLocator, text);
         getDriver().findElement(elementLocator).sendKeys(text);
         return this;
-    }
-
-    public AppiumDriverHelper type(MobileElement element, double text) {
-        return type(element, String.valueOf(text));
-    }
-
-    public AppiumDriverHelper type(MobileElement element, CharSequence text) {
-        return type(element, String.valueOf(text));
     }
 
     public AppiumDriverHelper tap(By elementLocator) {
@@ -99,43 +81,6 @@ public class AppiumDriverHelper extends BaseHelper {
         MobileElement element = null;
         element = getDriver().findElement(elementLocator);
         return element;
-    }
-
-    public MobileElement findElement(By elementLocator, long timeoutInSeconds) {
-        app.log().debug(elementLocator, timeoutInSeconds);
-        MobileElement element = withElementTimeout(() -> getDriver().findElement(elementLocator), timeoutInSeconds);
-        return element;
-    }
-
-    public List<MobileElement> findElements(By elementLocator) {
-        app.log().debug(elementLocator);
-        List<MobileElement> elements = elements = getDriver().findElements(elementLocator);
-        return elements;
-    }
-
-    public MobileElement findElement(MobileElement sourceElement, By targetElementLocator) {
-        app.log().debug(sourceElement, targetElementLocator);
-        MobileElement element = sourceElement.findElement(targetElementLocator);
-        return element;
-    }
-
-    public List<MobileElement> findElements(MobileElement sourceElement, By targetElementLocator) {
-        app.log().debug(sourceElement, targetElementLocator);
-        return sourceElement.findElements(targetElementLocator);
-    }
-
-    public <S> S withElementTimeout(Supplier<S> action, long timeoutInSeconds) {
-        appiumDriver.manage().timeouts().implicitlyWait(timeoutInSeconds, TimeUnit.SECONDS);
-        final S result = action.get();
-        appiumDriver.manage().timeouts().implicitlyWait(Configuration.WEBDRIVER_WAIT, TimeUnit.SECONDS);
-        return result;
-    }
-
-    public MobileElement findElementByFilter(List<MobileElement> elementList, Predicate<? super MobileElement> predicate) {
-        return elementList.stream()
-                .filter(predicate)
-                .findFirst()
-                .orElseThrow();
     }
 
     public void installApp(String appPath) {
