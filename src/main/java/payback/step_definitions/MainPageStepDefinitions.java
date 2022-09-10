@@ -8,14 +8,14 @@ public class MainPageStepDefinitions {
     protected ApplicationManager app = ApplicationManager.get();
 
     private static final By couponsButton = By.id("coupon_center_dest");
-    private static final By popup = By.id("ve_feed_refresh_layout");
-    private static final By dismissPopup = By.id("ve_feed_refresh_layout");
+    private static final By popup = By.xpath("//*[contains(@text, 'Deine MOBILE PAYBACK KARTE hat ein neues')]");
+    private static final By dismissPopup = By.xpath("//*[contains(@text, 'Deine MOBILE PAYBACK KARTE hat ein neues')]");
 
     @And("I proceed to coupons page")
     public void i_proceed_to_coupons_page() {
         app.log().info();
-        if (app.appium().findElement(popup).isDisplayed())
-            app.appium().tap(dismissPopup);
+        app.waits().waitForVisibility(popup);
+        app.appium().tap(dismissPopup);
         app.appium().tap(couponsButton);
     }
 }

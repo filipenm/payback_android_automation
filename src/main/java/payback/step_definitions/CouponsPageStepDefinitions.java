@@ -21,6 +21,7 @@ public class CouponsPageStepDefinitions {
         app.log().info();
         app.appium().tap(filterButton);
         app.appium().tap(partnerButton);
+        app.waits().waitForVisibility(activateButton);
         app.appium().tap(activateButton);
     }
 
