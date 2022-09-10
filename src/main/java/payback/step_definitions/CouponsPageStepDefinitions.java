@@ -16,6 +16,8 @@ public class CouponsPageStepDefinitions {
     private static final By activatedCoupon = By.id("activated_icon");
     private static final By redeemOffline = By.id("redeem_offline_button");
 
+    // ToDo: implement choosing correct partner by name
+    // Todo: implement DB rollback
     @And("I filter by partner and activate a coupon")
     public void i_filter_by_partner_and_activate_coupon() {
         app.log().info();

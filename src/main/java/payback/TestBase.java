@@ -8,7 +8,7 @@ import payback.core.ApplicationManager;
 public class TestBase {
     protected ApplicationManager app = ApplicationManager.get();
 
-    private By login = By.id("welcome_loginbutton");
+    private static final By login = By.id("welcome_loginbutton");
 
     @Before
     public void beforeSuite() {

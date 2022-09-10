@@ -3,6 +3,7 @@ Feature: Coupons feature
   I want to choose a coupon by a partner
   So that I will have some advantage
 
+  #ToDo: Allure reports are in progress
   Scenario: Test coupons functionality
     Given I am at the Login page
     When I log in with account number '{cardNumber}' and password '{password}'
